@@ -30,43 +30,41 @@ export default defineComponent({
   },
 
   setup(props, ctx) {
-    const data = reactive({
-      payload: null,
-      isLoading: false,
-      error: null,
-    });
+    // const data = reactive({
+    //   payload: null,
+    //   isLoading: false,
+    //   error: null,
+    // });
 
-    const { request, immediate, errorComponent, skeletonComponent } = toRefs(
-      props.options
-    );
+    // const { request, immediate, errorComponent, skeletonComponent } =
+    //   props.options;
 
-    const startRequest = async () => {
-      console.log(data.isLoading, data.error);
-      try {
-        data.error = null;
-        data.isLoading = true;
-        const response = await request.value();
-        data.payload = response;
-      } catch (error) {
-        console.log(error);
-        data.error = error;
-      } finally {
-        data.isLoading = false;
-      }
-    };
+    // const startRequest = async () => {
+    //   try {
+    //     data.error = null;
+    //     data.isLoading = true;
+    //     const response = await request.value();
+    //     data.payload = response;
+    //   } catch (error) {
+    //     console.log(error);
+    //     data.error = error;
+    //   } finally {
+    //     data.isLoading = false;
+    //   }
+    // };
 
-    const trigger = ref(false);
+    // const trigger = ref(false);
 
-    const triggerRequest = () => (trigger.value = !trigger.value);
+    // const triggerRequest = () => (trigger.value = !trigger.value);
 
-    watch(trigger, startRequest);
+    // watch(trigger, startRequest);
 
-    onMounted(() => {
-      immediate.value && startRequest();
-    });
+    // onMounted(() => {
+    //   immediate.value && startRequest();
+    // });
 
-    const fProps = { ...toRefs(data), triggerRequest };
-    const renderValue = ref(h(skeletonComponent, fProps));
+    // const fProps = { ...toRefs(data), triggerRequest };
+    // const renderValue = ref(h(skeletonComponent, fProps));
 
     // watch(data, (changed) => {
     //   console.log('changed', changed);
@@ -84,7 +82,7 @@ export default defineComponent({
     //   renderValue.value = () => ctx.slots.default?.(fProps);
     // });
 
-    return () => renderValue.value;
+    return () => h('div', null, ['github']);
   },
 });
 </script>
