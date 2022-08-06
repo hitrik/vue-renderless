@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="https://vuejs.org/images/logo.png" />
-    <RenderLess :options="options">
+    <RenderLess :options="options" />
+  </div>
+</template>
+
+<script>
+/*
+
+
       <template #default="{ isLoading, error, payload, triggerRequest }">
         <p class="content">
           {{ payload.value && JSON.stringify(payload.value) }}
         </p>
         <button @click="triggerRequest">Repeat Request</button>
       </template>
-    </RenderLess>
-  </div>
-</template>
 
-<script>
+*/
 import { defineComponent, reactive, ref } from 'vue';
 import SkeletonComponent from './SkeletonComponent.vue';
 import ErrorComponent from './ErrorComponent.vue';
@@ -38,8 +41,8 @@ export default defineComponent({
     const options = reactive({
       request: requestTodos,
       immediate: true,
-      SkeletonComponent,
-      ErrorComponent,
+      skeletonComponent: SkeletonComponent,
+      errorComponent: ErrorComponent,
     });
     /*
     <template #skeleton="{ isLoading, triggerRequest }">

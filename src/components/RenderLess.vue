@@ -66,25 +66,25 @@ export default defineComponent({
     });
 
     const fProps = { ...toRefs(data), triggerRequest };
-    const renderValue = ref(() => h(SkeletonComponent, fProps));
+    const renderValue = ref(h(skeletonComponent, fProps));
 
-    watch(data, (changed) => {
-      console.log('changed', changed);
+    // watch(data, (changed) => {
+    //   console.log('changed', changed);
 
-      if (data.error) {
-        renderValue.value = () => h(ErrorComponent, fProps);
-        return;
-      }
+    //   if (data.error) {
+    //     renderValue.value = () => h(errorComponent, fProps);
+    //     return;
+    //   }
 
-      if (data.isLoading) {
-        renderValue.value = () => h(SkeletonComponent, fProps);
-        return;
-      }
+    //   if (data.isLoading) {
+    //     renderValue.value = () => h(skeletonComponent, fProps);
+    //     return;
+    //   }
 
-      renderValue.value = () => ctx.slots.default?.(fProps);
-    });
+    //   renderValue.value = () => ctx.slots.default?.(fProps);
+    // });
 
-    return renderValue.value;
+    return () => renderValue.value;
   },
 });
 </script>
